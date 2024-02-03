@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_food_delivery_ui/models/restaurant.dart';
 
 class RestaurantScreen extends StatefulWidget {
@@ -19,11 +18,14 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
       children: <Widget>[
         Stack(
           children: <Widget>[
-            Image(
-              height: 220.0,
-              width: MediaQuery.of(context).size.width,
-              image: AssetImage(widget.restaurant.imageUrl),
-              fit: BoxFit.cover,
+            Hero(
+              tag: widget.restaurant.imageUrl,
+              child: Image(
+                height: 220.0,
+                width: MediaQuery.of(context).size.width,
+                image: AssetImage(widget.restaurant.imageUrl),
+                fit: BoxFit.cover,
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
@@ -45,6 +47,30 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             ),
           ],
         ),
+        Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    widget.restaurant.name,
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(
+                    '0.2 miles away',
+                    style: TextStyle(fontSize: 18.0),
+                  )
+                ],
+              )
+            ],
+          ),
+        )
       ],
     ));
   }
